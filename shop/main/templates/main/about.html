@@ -2,3 +2,20 @@
 {%block title%}
 About Page
 {%endblock%}
+
+{%block contetn%}
+    <div class="p-5 mb-4 bq-white rounded-3 shadow-sm">
+        <h1 class="display-5 fw-bold">Welcom</h1>
+        <p class="fs-5 text-muted">
+            {{text}}
+        </p>
+        <ul>
+            {% for framework in frameworks %}
+            <li>{{ forloop.counter2}} {{ framework }}</li>
+            {% empty %}
+            <li>No Data</li>
+            {% empty %}
+            {% endfor %}
+        </ul>
+    </div>
+{%endblock%}
