@@ -1,6 +1,4 @@
-{% load static%}
-
-<!DOCTYPE html>
+{% load static %}
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +6,7 @@
     <title>{% block title %}{%endblock%}</title>
 
     <!-- Bootstrap 5 -->
-    <link href="{% static 'main/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
 <body class="bg-light">
 
@@ -26,10 +24,10 @@
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Головна</a>
+                        <a class="nav-link active" href="/">Головна</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Про нас</a>
+                        <a class="nav-link" href="/about">Про нас</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Послуги</a>
@@ -44,7 +42,35 @@
 
     <!-- Основний контент -->
     <main class="container mt-4">
-        {% block content %}{% endblock %}
+
+    {% block content %}
+        {% endblock %}
+
+        <!-- Блоки контенту -->
+        <div class="row g-4">
+            {% for card in cards %}
+<!--            {% if forloop.first %}-->
+<!--            <p>Start</p>-->
+<!--            {% endif %}-->
+<!--            {% if forloop.last %}-->
+<!--            <p>End</p>-->
+<!--            {% endif %}-->
+
+            <div class="col-md-4">
+
+                    <section class="card" style="max-width: 320px">
+  <img src="{% static 'main/images/'|add:card.image %}" class="card-img-top" alt="{{ card.title }}">
+  <div class="card-body">
+    <h4 class="card-title">{{ card.title }}</h4>
+    <p class="card-text">{{ card.description }}</p>
+    <a href="card/{{forloop.counter}}" class="btn-solid theme-primary">Details</a>
+  </div>
+</section>
+
+            </div>
+{% endfor %}
+        </div>
+
     </main>
 
     <!-- Підвал -->
@@ -55,7 +81,6 @@
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="{% static 'main/js/bootstrap.bundle.min.js'%}"></script>
-
+    <script src="{% static 'main/js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
