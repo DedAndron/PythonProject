@@ -10,6 +10,7 @@ def home(request):
 
 def about(request):
     text = 'Welcome to the About page!'
+
     frameworks = []
     return render(request, 'main/about.html',
                   {'text': text, 'frameworks': frameworks})
