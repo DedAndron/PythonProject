@@ -1,16 +1,16 @@
 cards = [
     {
-        'image': 'UwU1.png',
+        'image': 'gisan.png',
         'title': 'React',
         'description': 'JavaScript для створення інтерфейсів',
     },
     {
-        'image': 'gisan.png',
+        'image': 'gsdn.png',
         'title': 'Python',
         'description': 'Мова програмування Python',
     },
     {
-        'image': 'gsdn.png',
+        'image': 'UwU1.png',
         'title': 'Django',
         'description': 'Фреймворк для розробки веб-застосунків',
     }
