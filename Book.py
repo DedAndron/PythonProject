@@ -8,6 +8,7 @@ class Book:
             raise ValueError('The year cannot be less than 2027')
         if pages > 0:
             self.pages = pages
+
         else:
             self.pages = 0
     def __str__(self):
