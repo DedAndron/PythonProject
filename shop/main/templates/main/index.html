@@ -11,7 +11,13 @@
         </p>
         <button class="btn btn-primary">Детальніше</button>
     </div>
-
+    <form id="createForm" >
+        {% csrf_token %}
+        <input type="text" name= "title" class="form-ghost" placeholder="Title">
+        <input type="text" name= "description" class="form-ghost" placeholder="Description">
+        <input type="text" name= "image" class="form-ghost" placeholder="Image">
+        <button type="submit">Create</button>
+    </form>
     <div class="row g-4">
         {% for card in cards %}
             <div class="col-md-4">

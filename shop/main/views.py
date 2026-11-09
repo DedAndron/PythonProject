@@ -1,6 +1,7 @@
-from django.http import HttpResponseBadRequest, HttpResponseNotFound
+from django.http import HttpResponseBadRequest, HttpResponseNotFound, JsonResponse, HttpResponse
 from django.shortcuts import render
 from .cards import cards
+import json
 
 # Create your views here.
 
@@ -42,3 +43,29 @@ def search(request):
         'card': card,
         'title': card['title'],
     })
+def create_card(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        title = data.get('title')
+        description = data.get('description')
+        image = data.get('image')
+        print(title, description, image)
+    return JsonResponse({'message':'ok'})
+
+def registration(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+        email = data.get('email')
+        password = data.get('password')
+
+        print(first_name, last_name, email, password)
+
+        return JsonResponse({
+            'success': True,
+            'redirect_url': '/'
+        })
+
+    return render(request, 'main/register.html')
