@@ -1,164 +1,130 @@
 {% extends 'main/layout.html' %}
-{% load static %}
 
-{% block title %}My CV{% endblock %}
+{% block title %}CV{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="cv-container">
-        <div class="row g-0">
+<div class="card shadow-sm border-0 overflow-hidden my-5">
+    <div class="row g-0">
+        <aside class="col-lg-4 bg-dark text-white p-4 p-lg-5">
+            <div class="text-center mb-4">
+                <img src="https://placehold.co/300x300" alt="Profile photo" class="img-fluid rounded-circle border border-4 border-light mb-3" style="width: 170px; height: 170px; object-fit: cover;">
+                <h3 class="mb-1">Zakhar Zhechev</h3>
+                <p class="text-light-emphasis mb-0">Full-Stack Developer</p>
+            </div>
 
-            <!-- LEFT SIDEBAR -->
-            <aside class="col-md-4 sidebar">
+            <section class="mb-4">
+                <h5 class="text-primary text-uppercase mb-3">Personal information</h5>
+                <p class="mb-2"><strong>City:</strong><br>Plovdiv, Bulgaria</p>
+                <p class="mb-2"><strong>Email:</strong><br>example@gmail.com</p>
+                <p class="mb-0"><strong>Phone:</strong><br>+359 000 000 000</p>
+            </section>
 
-                <div class="text-center">
-                    <img
-                        src="https://placehold.co/300x300"
-                        alt="Profile photo"
-                        class="profile-img mb-3">
-
-                    <h3>Zakhar Zhechev</h3>
-                    <p>Full-Stack Developer</p>
-                </div>
-
-                <h5>Personal information</h5>
-
-                <p><strong>City:</strong><br>Plovdiv, Bulgaria</p>
-                <p><strong>Email:</strong><br>example@gmail.com</p>
-                <p><strong>Phone:</strong><br>+359 000 000 000</p>
-
-                <h5>Personal qualities</h5>
-                <ul>
+            <section class="mb-4">
+                <h5 class="text-primary text-uppercase mb-3">Personal qualities</h5>
+                <ul class="ps-3 mb-0">
                     <li>Responsibility</li>
                     <li>Communication skills</li>
                     <li>Analytical thinking</li>
                     <li>Attention to detail</li>
                     <li>Willingness to learn</li>
                 </ul>
+            </section>
 
-                <h5>Languages</h5>
-                <ul>
+            <section>
+                <h5 class="text-primary text-uppercase mb-3">Languages</h5>
+                <ul class="ps-3 mb-0">
                     <li>Ukrainian — fluent</li>
                     <li>Russian — fluent</li>
                     <li>English — intermediate</li>
                     <li>Bulgarian — intermediate</li>
                 </ul>
+            </section>
+        </aside>
 
-            </aside>
+        <main class="col-lg-8 bg-white p-4 p-lg-5">
+            <h1 class="display-5 fw-bold mb-2">Zakhar Zhechev</h1>
+            <p class="text-primary fs-5 mb-4">Full-Stack Developer</p>
 
-            <!-- RIGHT SIDEBAR -->
-            <main class="col-md-8 main-content">
+            <section class="mb-5">
+                <h4 class="border-bottom border-primary border-2 pb-2 mb-3">About me</h4>
+                <p class="text-secondary mb-3">
+                    Beginner Full-Stack Developer interested in developing web applications and
+                    creating modern information systems. I have experience working with both the
+                    server-side and client-side parts of web projects.
+                </p>
+                <p class="text-secondary mb-0">
+                    My professional goal is to develop in the field of programming, improve my technical
+                    skills, and participate in creating high-quality software products.
+                </p>
+            </section>
 
-                <h1>Zakhar Zhechev</h1>
-                <div class="subtitle">Full-Stack Developer</div>
+            <section class="mb-5">
+                <h4 class="border-bottom border-primary border-2 pb-2 mb-3">Education</h4>
+                <p class="mb-2"><strong>Specialty:</strong> Computer science</p>
+                <p class="mb-0"><strong>Years of study:</strong> 2023 – 2027</p>
+            </section>
 
-                <!-- ABOUT ME -->
-                <section>
-                    <h4 class="section-title">About me</h4>
+            <section class="mb-5">
+                <h4 class="border-bottom border-primary border-2 pb-2 mb-3">Skills</h4>
+                <p class="fw-semibold mb-2">Programming languages:</p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge bg-light text-dark border">C#</span>
+                    <span class="badge bg-light text-dark border">Python</span>
+                    <span class="badge bg-light text-dark border">JavaScript</span>
+                    <span class="badge bg-light text-dark border">SQL</span>
+                </div>
 
-                    <p>
-                        Beginner Full-Stack Developer,
-                        interested in developing web applications
-                        and creating modern information systems.
-                        I have experience working with both the server-side
-                        and client-side parts of web projects.
-                    </p>
+                <p class="fw-semibold mb-2">Technologies and tools:</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">ASP.NET Core</span>
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">Entity Framework</span>
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">React</span>
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">HTML</span>
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">CSS</span>
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">Bootstrap</span>
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">Git</span>
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">SQL Server</span>
+                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">Django</span>
+                </div>
+            </section>
 
-                    <p>
-                        My professional goal is to develop in the field of
-                        programming, improve my technical skills,
-                        and participate in creating high-quality software
-                        products.
-                    </p>
-                </section>
+            <section>
+                <h4 class="border-bottom border-primary border-2 pb-2 mb-3">Experience and educational projects</h4>
 
-                <!-- EDUCATION -->
-                <section>
-                    <h4 class="section-title">Education</h4>
-
-                    <h5>Educational institution</h5>
-                    <p class="mb-1">
-                        <strong>Specialty:</strong>
-                        Computer science
-                    </p>
-                    <p class="mb-1">
-                        <strong>Years of study:</strong>
-                        2023 – 2027
-                    </p>
-                </section>
-
-                <!-- SKILLS -->
-                <section>
-                    <h4 class="section-title">Skills</h4>
-
-                    <h6><strong>Programming languages:</strong></h6>
-                    <span class="skill-badge">C#</span>
-                    <span class="skill-badge">Python</span>
-                    <span class="skill-badge">JavaScript</span>
-                    <span class="skill-badge">SQL</span>
-
-                    <h6 class="mt-3"><strong>Technologies and tools:</strong></h6>
-                    <span class="skill-badge">ASP.NET Core</span>
-                    <span class="skill-badge">Entity Framework</span>
-                    <span class="skill-badge">React</span>
-                    <span class="skill-badge">HTML</span>
-                    <span class="skill-badge">CSS</span>
-                    <span class="skill-badge">Bootstrap</span>
-                    <span class="skill-badge">Git</span>
-                    <span class="skill-badge">SQL Server</span>
-                    <span class="skill-badge">Django</span>
-                </section>
-
-                <!-- PROJECTS -->
-                <section>
-                    <h4 class="section-title">
-                        Work experience and educational projects
-                    </h4>
-
-                    <div class="project">
-                        <h5>Shop API</h5>
-                        <p>
-                            Development of the server side of an online store.
-                            Implementation of an API for working with products,
+                <div class="card bg-light border-0 mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Shop API</h5>
+                        <p class="card-text text-secondary">
+                            Development of the server side of an online store with an API for working with products,
                             categories, users, and orders.
                         </p>
-                        <p class="mb-0">
-                            <strong>Technologies:</strong>
-                            C#, ASP.NET Core, Entity Framework,
-                            SQL Server, RabbitMQ.
-                        </p>
+                        <p class="mb-0"><strong>Technologies:</strong> C#, ASP.NET Core, Entity Framework, SQL Server, RabbitMQ.</p>
                     </div>
+                </div>
 
-                    <div class="project">
-                        <h5>Steam Clone</h5>
-                        <p>
-                            Educational project — an analogue of the digital
-                            platform Steam. Implementation of database models
-                            for games, users, achievements, and wishlists.
+                <div class="card bg-light border-0 mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Steam Clone</h5>
+                        <p class="card-text text-secondary">
+                            Educational project — a digital platform similar to Steam, with models for games, users,
+                            achievements, and wishlists.
                         </p>
-                        <p class="mb-0">
-                            <strong>Technologies:</strong>
-                            C#, ASP.NET Core, SQL Server,
-                            Entity Framework, React.
-                        </p>
+                        <p class="mb-0"><strong>Technologies:</strong> C#, ASP.NET Core, SQL Server, Entity Framework, React.</p>
                     </div>
+                </div>
 
-                    <div class="project">
-                        <h5>React Web Application</h5>
-                        <p>
-                            Creation of the client-side of a web application
-                            using a component-based approach,
-                            routing, and interaction with a REST API.
+                <div class="card bg-light border-0 mb-0">
+                    <div class="card-body">
+                        <h5 class="card-title">React Web Application</h5>
+                        <p class="card-text text-secondary">
+                            Creation of a client-side web application using a component-based approach, routing,
+                            and interaction with a REST API.
                         </p>
-                        <p class="mb-0">
-                            <strong>Technologies:</strong>
-                            React, TypeScript, JavaScript,
-                            HTML, CSS.
-                        </p>
+                        <p class="mb-0"><strong>Technologies:</strong> React, TypeScript, JavaScript, HTML, CSS.</p>
                     </div>
-                </section>
-            </main>
-        </div>
+                </div>
+            </section>
+        </main>
     </div>
 </div>
-{% end content %}
+{% endblock %}

@@ -1,8 +1,11 @@
-from django.http import HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import render
-
-# Create your views here.
 
 
 def home(request):
     return render(request, 'main/index.html')
+
+
+def cv(request):
+    return render(request, 'main/cv.html')
+def cv(request):
+    return render(request, 'main/cv.html')
