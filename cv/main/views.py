@@ -7,5 +7,3 @@ def home(request):
 
 def cv(request):
     return render(request, 'main/cv.html')
-def cv(request):
-    return render(request, 'main/cv.html')
