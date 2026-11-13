@@ -1,7 +1,9 @@
 from django.http import HttpResponseBadRequest, HttpResponseNotFound, JsonResponse, HttpResponse
 from django.shortcuts import render
+
+from . import models
 from .cards import cards
-import json
+
 
 # Create your views here.
 
@@ -49,22 +51,21 @@ def create_card(request):
         description = request.POST.get('description')
         image = request.FILES.get('image')
         print(title, description, image)
+        card = models.Card(title=title, description=description, image=image)
+        card.save()
     return JsonResponse({'message':'ok'})
 
 def registration(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-
-        first_name = data.get('first_name')
-        last_name = data.get('last_name')
-        email = data.get('email')
-        password = data.get('password')
-
-        print(first_name, last_name, email, password)
-
+        avatar = request.FILES.get('avatar')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = models.User(avatar=avatar, first_name=first_name, last_name=last_name, email=email, password=password)
+        user.save()
         return JsonResponse({
             'success': True,
-            'redirect_url': '/'
+            'redirect_url': ''
         })
-
     return render(request, 'main/register.html')
