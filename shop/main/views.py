@@ -45,10 +45,9 @@ def search(request):
     })
 def create_card(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        title = data.get('title')
-        description = data.get('description')
-        image = data.get('image')
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image = request.FILES.get('image')
         print(title, description, image)
     return JsonResponse({'message':'ok'})
 
