@@ -7,7 +7,9 @@ class Card(models.Model):
     description = models.CharField(max_length=200)
     image = models.ImageField(upload_to='cards/')
     created_at = models.DateTimeField()
+
 class User(models.Model):
+    avatar = models.ImageField(upload_to='users/')
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     date_of_birth = models.DateField()
