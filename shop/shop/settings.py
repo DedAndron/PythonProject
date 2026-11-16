@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,11 +79,11 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shop', # назва БД
-        'USER': 'root', # користувач
-        'PASSWORD': 'password', # пароль
-        'HOST': 'localhost', # або IP
-        'PORT': '3306',
+        'NAME': os.getenv('DB_NAME'), # назва БД
+        'USER': os.getenv('DB_USER'), # користувач
+        'PASSWORD': os.getenv('DB_PASS'), # пароль
+        'HOST': os.getenv('DB_HOST'), # або IP
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 

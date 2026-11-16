@@ -1,3 +1,5 @@
+import datetime
+
 from django.http import HttpResponseBadRequest, HttpResponseNotFound, JsonResponse, HttpResponse
 from django.shortcuts import render
 
@@ -69,3 +71,13 @@ def registration(request):
             'redirect_url': ''
         })
     return render(request, 'main/register.html')
+def test_create(request):
+    card = models.Card(
+        title='title',
+        description='description',
+        image='image',
+        created_at=datetime.datetime.now(),
+    )
+    card.save()
+    tag = models.Tag.objects.create(name='test_tag')
+    return HttpResponse('ok')
