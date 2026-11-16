@@ -9,7 +9,7 @@ def home(request):
 
         action = request.POST.get('action')
 
-        # ЗАВДАННЯ 1: АВТОРИЗАЦІЯ
+        # Task 1: Login
         if action == 'login':
 
             login = request.POST.get('login')
@@ -18,11 +18,11 @@ def home(request):
             users = {
                 'admin': {
                     'password': 'admin123',
-                    'role': 'Адміністратор'
+                    'role': 'Administrator'
                 },
                 'user': {
                     'password': 'user123',
-                    'role': 'Користувач'
+                    'role': 'User'
                 }
             }
 
@@ -35,10 +35,10 @@ def home(request):
             else:
                 context['login_result'] = {
                     'success': False,
-                    'message': 'Неправильний логін або пароль!'
+                    'message': 'Incorrect username or password.'
                 }
 
-        # ЗАВДАННЯ 2: КАЛЬКУЛЯТОР
+        # Task 2: Calculator
         elif action == 'calculator':
 
             try:
@@ -52,18 +52,18 @@ def home(request):
 
                 if operation == 'min':
                     result = min(numbers)
-                    operation_name = 'Мінімум'
+                    operation_name = 'Minimum'
 
                 elif operation == 'max':
                     result = max(numbers)
-                    operation_name = 'Максимум'
+                    operation_name = 'Maximum'
 
                 elif operation == 'avg':
                     result = sum(numbers) / 3
-                    operation_name = 'Середнє арифметичне'
+                    operation_name = 'Arithmetic mean'
 
                 else:
-                    raise ValueError('Оберіть операцію!')
+                    raise ValueError('Select an operation.')
 
                 context['calculator_result'] = {
                     'result': result,
@@ -71,9 +71,9 @@ def home(request):
                 }
 
             except (ValueError, TypeError):
-                context['calculator_error'] = 'Введіть три правильні числа та оберіть операцію!'
+                context['calculator_error'] = 'Enter three valid numbers and select an operation.'
 
-        # ЗАВДАННЯ 3: РЕЄСТРАЦІЯ
+        # Task 3: Registration
         elif action == 'registration':
 
             try:
@@ -104,9 +104,9 @@ def home(request):
                 context['registration_result'] = registration
 
             except (ValueError, TypeError):
-                context['registration_error'] = 'Перевірте правильність введених даних!'
+                context['registration_error'] = 'Please check the information you entered.'
 
-        # ЗАВДАННЯ 4: ДЕНЬ ПРОГРАМІСТА
+        # Task 4: Programmer's Day
         elif action == 'programmer_day':
 
             try:
@@ -118,20 +118,20 @@ def home(request):
                 programmer_date = date(year, 1, 1) + timedelta(days=255)
 
                 months = [
-                    'січня', 'лютого', 'березня',
-                    'квітня', 'травня', 'червня',
-                    'липня', 'серпня', 'вересня',
-                    'жовтня', 'листопада', 'грудня'
+                    'January', 'February', 'March',
+                    'April', 'May', 'June',
+                    'July', 'August', 'September',
+                    'October', 'November', 'December'
                 ]
 
                 weekdays = [
-                    'понеділок',
-                    'вівторок',
-                    'середа',
-                    'четвер',
-                    'п’ятниця',
-                    'субота',
-                    'неділя'
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursday',
+                    'Friday',
+                    'Saturday',
+                    'Sunday'
                 ]
 
                 context['programmer_result'] = {
@@ -142,6 +142,6 @@ def home(request):
                 }
 
             except (ValueError, TypeError):
-                context['programmer_error'] = 'Введіть правильний рік (від 1 до 9998)!'
+                context['programmer_error'] = 'Enter a valid year (from 1 to 9998).'
 
     return render(request, 'main/index.html', context)
