@@ -1,12 +1,17 @@
 from django.db import models
 
 # Create your models here.
+class Tag(models.Model):
+    tag_name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.tag_name
 
 class Card(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     image = models.ImageField(upload_to='cards/')
     created_at = models.DateTimeField()
+    tags = models.ManyToManyField(Tag)
 
 class User(models.Model):
     avatar = models.ImageField(upload_to='users/')
