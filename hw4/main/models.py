@@ -11,7 +11,7 @@ class Contact(models.Model):
 
     last_name = models.CharField(
         max_length=100,
-        verbose_name='Last nhw5ame'
+        verbose_name='Last name'
     )
 
     email = models.EmailField(
