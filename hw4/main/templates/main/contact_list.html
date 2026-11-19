@@ -1,0 +1,148 @@
+{% extends 'contacts/base.html' %}
+
+{% block title %}
+    Телефонна книга
+{% endblock %}
+
+{% block content %}
+
+<div class="content-card">
+
+    <h2 class="section-title">
+        Список контактів
+    </h2>
+
+    <!-- Форма пошуку -->
+
+    <form method="GET" class="mb-4">
+
+        <div class="input-group">
+
+            <input type="text"
+                   name="search"
+                   class="form-control"
+                   placeholder="Пошук за ім'ям або прізвищем..."
+                   value="{{ search }}">
+
+            <button type="submit" class="btn btn-primary">
+                Знайти
+            </button>
+
+            <a href="{% url 'contact_list' %}"
+               class="btn btn-outline-secondary">
+                Очистити
+            </a>
+
+        </div>
+
+    </form>
+
+
+    <!-- Кнопка додавання -->
+
+    <div class="mb-3">
+
+        <a href="{% url 'contact_create' %}"
+           class="btn btn-success">
+            + Додати новий контакт
+        </a>
+
+    </div>
+
+
+    <!-- Таблиця контактів -->
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>Ім'я</th>
+                    <th>Прізвище</th>
+                    <th>Email</th>
+                    <th>Телефон</th>
+                    <th>Примітки</th>
+                    <th>Дії</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for contact in contacts %}
+
+                    <tr>
+
+                        <td>{{ contact.first_name }}</td>
+
+                        <td>{{ contact.last_name }}</td>
+
+                        <td>{{ contact.email }}</td>
+
+                        <td>{{ contact.phone }}</td>
+
+                        <td>{{ contact.notes|default:"—" }}</td>
+
+                        <td>
+
+                            <div class="d-flex gap-2">
+
+                                <!-- Редагування -->
+
+                                <a href="{% url 'contact_update' contact.pk %}"
+                                   class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+
+                                <!-- Видалення -->
+
+                                <form method="POST"
+                                      action="{% url 'contact_delete' contact.pk %}">
+
+                                    {% csrf_token %}
+
+                                    <button type="submit"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Видалити цей контакт?')">
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+
+                            {% if search %}
+                                Контактів за вашим запитом не знайдено.
+                            {% else %}
+                                Контактів поки немає.
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <p class="text-muted mb-0">
+        Знайдено контактів: {{ contacts|length }}
+    </p>
+
+</div>
+
+{% endblock %}
