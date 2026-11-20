@@ -1,10 +1,13 @@
 import datetime
 
+from django.contrib import messages
 from django.http import HttpResponseBadRequest, HttpResponseNotFound, JsonResponse, HttpResponse
-from django.shortcuts import render
+from django.http.request import HttpRequest
+from django.shortcuts import redirect, render
 
 from . import models
 from .cards import cards
+from .forms import Card_Form
 
 
 # Create your views here.
@@ -56,6 +59,17 @@ def create_card(request):
         card = models.Card(title=title, description=description, image=image)
         card.save()
     return JsonResponse({'message':'ok'})
+
+def card_form(request: HttpRequest) -> HttpResponse:
+    form = Card_Form(
+        request.POST if request.method == 'POST' else None,
+        request.FILES if request.method == 'POST' else None,
+    )
+    if request.method == 'POST' and form.is_valid():
+        models.Card_Response.objects.create(**form.cleaned_data)
+        messages.success(request, 'Card created successfully.')
+        return redirect('main:create_card')
+    return render(request, 'main/card_form.html', {'form': form})
 
 def registration(request):
     if request.method == 'POST':

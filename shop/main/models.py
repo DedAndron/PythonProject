@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+
 class Tag(models.Model):
     tag_name = models.CharField(max_length=50)
     def __str__(self):
@@ -22,3 +23,15 @@ class User(models.Model):
     email = models.EmailField()
     is_active = models.BooleanField(default=True)
     refresh_token = models.CharField(max_length=200)
+
+class Card_Response(models.Model):
+    TAG_CHOICES = [
+        ('react', 'React'),
+        ('python', 'Python'),
+        ('django', 'Django'),
+    ]
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='cards/')
+    created_at = models.DateTimeField(auto_now_add=True)
+    tags = models.CharField(max_length=20, choices=TAG_CHOICES)
