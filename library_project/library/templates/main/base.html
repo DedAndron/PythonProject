@@ -29,24 +29,30 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto">
 
-                {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'book_list' %}">
                             Books
                         </a>
                     </li>
 
-                    {% if perms.library.view_reader %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'reader_list' %}">
                             Readers
                         </a>
                     </li>
-                    {% endif %}
-                {% endif %}
 
             </ul>
-
+            <form method="get" class="mb-4">
+                <div class="input-group">
+                    <input type="text"
+                           name="search"
+                           class="form-control"
+                           placeholder="Search..."
+                           value="{{ search }}"
+                           aria-label="Search contacts">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
             <div class="d-flex align-items-center gap-3">
                 {% if user.is_authenticated %}
                     <span class="text-white">

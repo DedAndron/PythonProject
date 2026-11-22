@@ -15,7 +15,13 @@
         <tools />
         <mcp-servers />
       </assistant-state>
-      <assistant-state connection-id="fea161ea-e09f-412f-a34d-c981f7c57f9b" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+      <assistant-state connection-id="fea161ea-e09f-412f-a34d-c981f7c57f9b" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="013C574BBD0F42609ED6116EB07B6E39" availability="AVAILABLE" acknowledgement="ENGAGED" selected="true">
+        <chats>
+          <chat id="013C574BBD0F42609ED6116EB07B6E39" title="" session-signature="" timestamp="1795351921164">
+            <messages />
+            <context mode="DEVELOPMENT" provider="" profile="" model="" action="" interactive="true" />
+          </chat>
+        </chats>
         <tools />
         <mcp-servers />
       </assistant-state>
@@ -31,13 +37,7 @@
         <tools />
         <mcp-servers />
       </assistant-state>
-      <assistant-state connection-id="393e8e29-dc5a-4fb8-a567-589beeb8aa02" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="93F4EB9E633849EB9C7B391D09D01D8F" availability="AVAILABLE" acknowledgement="ENGAGED" selected="true">
-        <chats>
-          <chat id="93F4EB9E633849EB9C7B391D09D01D8F" title="" session-signature="" timestamp="1795200562619">
-            <messages />
-            <context mode="DEVELOPMENT" provider="" profile="" model="" action="" interactive="true" />
-          </chat>
-        </chats>
+      <assistant-state connection-id="393e8e29-dc5a-4fb8-a567-589beeb8aa02" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
         <mcp-servers />
       </assistant-state>
@@ -49,19 +49,21 @@
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="false" />
+    <show-object-properties value="true" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="fea161ea-e09f-412f-a34d-c981f7c57f9b">
-      <console name="Connection 1" type="STANDARD" schema="information_schema" session="Main">create database my_database;</console>
+      <console name="Connection 1" type="STANDARD" schema="information_schema" session="Main"><![CDATA[create database libraryDb;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="fea161ea-e09f-412f-a34d-c981f7c57f9b" object-ref="consoles/Connection 1" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
     <prerequisites />
@@ -71,14 +73,6 @@
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
-  </component>
-  <component name="DBNavigator.Project.MethodExecutionManager">
-    <method-browser />
-    <execution-history>
-      <group-entries value="true" />
-      <execution-inputs />
-    </execution-history>
-    <execution-variables-cache />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
