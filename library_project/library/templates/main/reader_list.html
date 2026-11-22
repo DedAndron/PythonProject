@@ -5,48 +5,61 @@
 
 {% block content %}
 
-<h2 class="mb-4">Library Readers</h2>
+<div class="page-heading">
+    <h1 class="h2 fw-bold mb-1">Readers</h1>
+    <p class="mb-0">Browse registered library members.</p>
+</div>
 
-<div class="table-responsive">
-    <table class="table table-striped table-hover bg-white shadow-sm">
+<div class="content-panel p-3 p-md-4 mb-4 shadow-sm">
+    <form method="get" action="{% url 'reader_list' %}" class="row g-2">
+        <div class="col-12 col-md">
+            <label for="reader-search" class="visually-hidden">Search readers</label>
+            <input id="reader-search" type="search" name="search" class="form-control"
+                   placeholder="Search by first or last name" value="{{ search }}">
+        </div>
+        <div class="col-12 col-md-auto d-flex gap-2">
+            <button type="submit" class="btn btn-primary px-4">Search</button>
+            {% if search %}
+                <a class="btn btn-outline-secondary" href="{% url 'reader_list' %}">Clear</a>
+            {% endif %}
+        </div>
+    </form>
+</div>
 
-        <thead class="table-dark">
+<div class="content-panel shadow-sm overflow-hidden">
+    <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Registration Date</th>
-                <th>Details</th>
+                <th scope="col">Reader</th>
+                <th scope="col" class="text-end">Details</th>
             </tr>
         </thead>
 
         <tbody>
             {% for reader in readers %}
             <tr>
-                <td>{{ reader.first_name }}</td>
-                <td>{{ reader.last_name }}</td>
-                <td>{{ reader.phone }}</td>
-                <td>{{ reader.email }}</td>
-                <td>{{ reader.registration_date }}</td>
-                <td>
+                <td class="fw-semibold">{{ reader.first_name }} {{ reader.last_name }}</td>
+                <td class="text-end">
                     <a href="{% url 'reader_detail' reader.pk %}"
-                       class="btn btn-primary btn-sm">
-                        View
+                       class="btn btn-outline-primary btn-sm">
+                        View profile <span aria-hidden="true">&rarr;</span>
                     </a>
                 </td>
             </tr>
 
             {% empty %}
             <tr>
-                <td colspan="6" class="text-center py-4">
-                    No readers found.
+                <td colspan="2" class="text-center py-5">
+                    <span class="d-block fw-semibold mb-1">No readers found</span>
+                    <span class="text-muted">{% if search %}Try another name.{% else %}No readers have registered yet.{% endif %}</span>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
 
     </table>
+    </div>
 </div>
 
 {% endblock %}

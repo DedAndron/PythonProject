@@ -5,52 +5,50 @@
 
 {% block content %}
 
-<div class="card shadow-sm">
-    <div class="card-body">
-
-        <h2 class="mb-4">Reader Information</h2>
-
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">First Name:</div>
-            <div class="col-md-8">{{ reader.first_name }}</div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Last Name:</div>
-            <div class="col-md-8">{{ reader.last_name }}</div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Phone:</div>
-            <div class="col-md-8">{{ reader.phone }}</div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Email:</div>
-            <div class="col-md-8">{{ reader.email }}</div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Registration Date:</div>
-            <div class="col-md-8">{{ reader.registration_date }}</div>
-        </div>
-
-        <hr>
-
-        <h4 class="mb-3">Borrowed Books</h4>
-
-        {% if reader.borrowed_books %}
-            <p>{{ reader.borrowed_books|linebreaks }}</p>
-        {% else %}
-            <p class="text-muted">This reader has not borrowed any books.</p>
-        {% endif %}
-
-        <a href="{% url 'reader_list' %}"
-           class="btn btn-secondary mt-3">
-            Back to Readers
-        </a>
-
+    <div class="page-heading">
+        <a href="{% url 'reader_list' %}" class="text-decoration-none small">&larr; Back to readers</a>
+        <h1 class="h2 fw-bold mt-3 mb-1">{{ reader.first_name }} {{ reader.last_name }}</h1>
+        <p class="mb-0">Reader profile</p>
     </div>
-</div>
 
+    <div class="row g-4">
+        <div class="col-lg-5">
+            <section class="content-panel shadow-sm p-4 h-100" aria-label="Reader information">
+                <h2 class="h5 fw-bold mb-4">Contact information</h2>
+                <dl class="mb-0">
+                    <dt class="small text-muted mb-1">Email</dt>
+                    <dd class="mb-3"><a href="mailto:{{ reader.email }}">{{ reader.email }}</a></dd>
+                    <dt class="small text-muted mb-1">Phone</dt>
+                    <dd class="mb-3"><a href="tel:{{ reader.phone }}">{{ reader.phone }}</a></dd>
+                    <dt class="small text-muted mb-1">Registered</dt>
+                    <dd class="mb-0">{{ reader.registration_date|date:"F j, Y" }}</dd>
+                </dl>
+            </section>
+        </div>
+        <div class="col-lg-7">
+            <section class="content-panel shadow-sm p-4 h-100" aria-label="Borrowing history">
+                <h2 class="h5 fw-bold mb-4">Borrowing history</h2>
+                {% for borrowing in reader.borrowings.all %}
+                    <div class="d-flex justify-content-between align-items-start gap-3 py-3 border-bottom">
+                        <div>
+                            <a class="fw-semibold text-decoration-none" href="{% url 'book_detail' borrowing.book.pk %}">
+                                {{ borrowing.book.title }}
+                            </a>
+                            <div class="small text-muted mt-1">Borrowed {{ borrowing.borrowed_at|date:"F j, Y" }}</div>
+                            {% if borrowing.returned_at %}
+                                <div class="small text-muted">Returned {{ borrowing.returned_at|date:"F j, Y" }}</div>
+                            {% endif %}
+                        </div>
+                        {% if borrowing.returned_at %}
+                            <span class="badge rounded-pill bg-secondary-subtle text-secondary">Returned</span>
+                        {% else %}
+                            <span class="badge rounded-pill bg-warning-subtle text-warning-emphasis">On loan</span>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p class="text-muted mb-0">This reader has no borrowing history yet.</p>
+                {% endfor %}
+            </section>
+        </div>
+    </div>
 {% endblock %}

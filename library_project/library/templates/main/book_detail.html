@@ -5,44 +5,33 @@
 
 {% block content %}
 
-<div class="card shadow-sm">
-    <div class="card-body">
-
-        <h2 class="card-title mb-4">{{ book.title }}</h2>
-
-        <p>
-            <strong>Author:</strong> {{ book.author }}
-        </p>
-
-        <p>
-            <strong>Publisher:</strong> {{ book.publisher }}
-        </p>
-
-        <p>
-            <strong>Genre:</strong> {{ book.genre }}
-        </p>
-
-        <p>
-            <strong>Publication Year:</strong>
-            {{ book.publication_year }}
-        </p>
-
-        <p>
-            <strong>Status:</strong>
-
-            {% if book.is_available %}
-                <span class="badge bg-success">Available</span>
-            {% else %}
-                <span class="badge bg-danger">Borrowed</span>
-            {% endif %}
-        </p>
-
-        <a href="{% url 'book_list' %}"
-           class="btn btn-secondary mt-3">
-            Back to Books
-        </a>
-
-    </div>
+<div class="page-heading">
+    <a href="{% url 'book_list' %}" class="text-decoration-none small">&larr; Back to books</a>
+    <h1 class="h2 fw-bold mt-3 mb-1">{{ book.title }}</h1>
+    <p class="mb-0">Book details</p>
 </div>
+
+<section class="content-panel shadow-sm p-4 p-md-5" aria-label="Book information">
+    <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+        <div>
+            <span class="badge rounded-pill bg-primary-subtle text-primary mb-3">{{ book.genre }}</span>
+            <p class="h5 mb-0">{{ book.author }}</p>
+        </div>
+        {% if book.is_available %}
+            <span class="badge rounded-pill bg-success-subtle text-success">Available</span>
+        {% else %}
+            <span class="badge rounded-pill bg-danger-subtle text-danger">Borrowed</span>
+        {% endif %}
+    </div>
+    <hr class="my-4">
+    <dl class="row mb-0">
+        <dt class="col-sm-4 text-muted py-2">Publisher</dt>
+        <dd class="col-sm-8 py-2">{{ book.publisher }}</dd>
+        <dt class="col-sm-4 text-muted py-2">Publication year</dt>
+        <dd class="col-sm-8 py-2">{{ book.publication_year }}</dd>
+        <dt class="col-sm-4 text-muted py-2">Genre</dt>
+        <dd class="col-sm-8 py-2">{{ book.genre }}</dd>
+    </dl>
+</section>
 
 {% endblock %}
