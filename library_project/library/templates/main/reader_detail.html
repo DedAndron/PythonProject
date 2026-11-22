@@ -1,0 +1,56 @@
+
+{% extends 'main/base.html' %}
+
+{% block title %}Reader Details{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <h2 class="mb-4">Reader Information</h2>
+
+        <div class="row mb-3">
+            <div class="col-md-4 fw-bold">First Name:</div>
+            <div class="col-md-8">{{ reader.first_name }}</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4 fw-bold">Last Name:</div>
+            <div class="col-md-8">{{ reader.last_name }}</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4 fw-bold">Phone:</div>
+            <div class="col-md-8">{{ reader.phone }}</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4 fw-bold">Email:</div>
+            <div class="col-md-8">{{ reader.email }}</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4 fw-bold">Registration Date:</div>
+            <div class="col-md-8">{{ reader.registration_date }}</div>
+        </div>
+
+        <hr>
+
+        <h4 class="mb-3">Borrowed Books</h4>
+
+        {% if reader.borrowed_books %}
+            <p>{{ reader.borrowed_books|linebreaks }}</p>
+        {% else %}
+            <p class="text-muted">This reader has not borrowed any books.</p>
+        {% endif %}
+
+        <a href="{% url 'reader_list' %}"
+           class="btn btn-secondary mt-3">
+            Back to Readers
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}
