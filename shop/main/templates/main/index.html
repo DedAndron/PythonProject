@@ -5,11 +5,17 @@
 
 {% block content %}
     <div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
-        <h1 class="display-5 fw-bold">Вітаємо на нашому сайті!</h1>
-        <p class="fs-5 text-muted">
-            Це проста сторінка, створена за допомогою Bootstrap 5.
-        </p>
-        <button class="btn btn-primary">Детальніше</button>
+        {% if is_first_visit %}
+                <div class="alert alert-success">
+                    Welcome! This is your first visit.
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    You have visited our website
+                    <strong>{{ visit_count|add:"-1" }}</strong>
+                    times before.
+                </div>
+            {% endif %}
     </div>
     <form id="createForm" enctype="multipart/form-data" method="post" >
         {% csrf_token %}

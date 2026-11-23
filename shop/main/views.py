@@ -1,7 +1,7 @@
 import datetime
 
 from django.contrib import messages
-from django.http import HttpResponseBadRequest, HttpResponseNotFound, JsonResponse, HttpResponse
+from django.http import HttpResponseBadRequest, HttpResponseNotFound, JsonResponse, HttpResponse, request
 from django.http.request import HttpRequest
 from django.shortcuts import redirect, render
 
@@ -14,8 +14,24 @@ from .forms import Card_Form
 
 
 def home(request):
-    return render(request, 'main/index.html', {'cards': cards})
-
+    visits = request.COOKIES.get('visits')
+    if visits is None:
+        visits = 0
+        is_first_visit = True
+    else:
+        visits = int(visits)
+        is_first_visit = False
+    visits += 1
+    response = render(request, 'main/index.html', {
+        'is_first_visit': is_first_visit,
+        'visit_count': visits - 1 if not is_first_visit else 0
+    })
+    response.set_cookie(
+        'visits',
+        visits,
+        max_age=60 * 60 * 24 * 365
+    )
+    return response
 
 def about(request):
     text = 'Welcome to the About page!'
