@@ -54,7 +54,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="fea161ea-e09f-412f-a34d-c981f7c57f9b">
-      <console name="Connection 1" type="STANDARD" schema="information_schema" session="Main"><![CDATA[create database libraryDb;]]></console>
+      <console name="Connection 1" type="STANDARD" schema="information_schema" session="Main"><![CDATA[create database shop_hwDb;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -68,6 +68,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="fea161ea-e09f-412f-a34d-c981f7c57f9b" />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />

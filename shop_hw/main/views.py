@@ -1,7 +1,7 @@
 from django.db.models.query_utils import Q
 from django.shortcuts import render, get_object_or_404
 
-from shop_hw.main.models import *
+from .models import *
 
 
 # Create your views here.
@@ -9,7 +9,7 @@ from shop_hw.main.models import *
 def home(request):
     products = Product.objects.all()
 
-    return render(request, 'shop/home.html', {
+    return render(request, 'main/product_list.html', {
         'products': products
     })
 
@@ -34,7 +34,7 @@ def seller_list(request):
     if selected_job:
         sellers = sellers.filter(job_title=selected_job)
 
-    return render(request, 'shop/seller_list.html', {
+    return render(request, 'main/seller_list.html', {
         'sellers': sellers,
         'selected_job': selected_job
     })
@@ -44,7 +44,7 @@ def seller_detail(request, pk):
     return render(request, 'main/seller_detail.html', {'seller': seller})
 
 def product_detail(request, pk):
-    product = get_object_or_404(Seller, pk=pk)
+    product = get_object_or_404(Product, pk=pk)
     return render(request, 'main/product_detail.html', {'product': product})
 
 def sale_list(request):
@@ -52,7 +52,7 @@ def sale_list(request):
         'buyer', 'seller'
     ).prefetch_related('product')
 
-    return render(request, 'shop/sale_list.html', {
+    return render(request, 'main/sale_list.html', {
         'sales': sales
     })
 
@@ -66,6 +66,6 @@ def sale_detail(request, pk):
 
     sale.calculate_sum()
 
-    return render(request, 'shop/sale_detail.html', {
+    return render(request, 'main/sale_detail.html', {
         'sale': sale
     })

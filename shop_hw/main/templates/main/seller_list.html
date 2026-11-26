@@ -1,5 +1,5 @@
 
-{% extends 'shop/base.html' %}
+{% extends 'main/base.html' %}
 
 {% block title %}Sellers{% endblock %}
 
@@ -24,20 +24,23 @@
 
                 <option value="">All Positions</option>
 
-                <option value="salesperson"
-                    {% if selected_job == 'salesperson' %}selected{% endif %}>
-                    Salesperson
-                </option>
+                {% if selected_job == 'salesperson' %}
+                    <option value="salesperson" selected>Salesperson</option>
+                {% else %}
+                    <option value="salesperson">Salesperson</option>
+                {% endif %}
 
-                <option value="head salesperson"
-                    {% if selected_job == 'head salesperson' %}selected{% endif %}>
-                    Head Salesperson
-                </option>
+                {% if selected_job == 'head salesperson' %}
+                    <option value="head salesperson" selected>Head Salesperson</option>
+                {% else %}
+                    <option value="head salesperson">Head Salesperson</option>
+                {% endif %}
 
-                <option value="sales department manager"
-                    {% if selected_job == 'sales department manager' %}selected{% endif %}>
-                    Sales Department Manager
-                </option>
+                {% if selected_job == 'sales department manager' %}
+                    <option value="sales department manager" selected>Sales Department Manager</option>
+                {% else %}
+                    <option value="sales department manager">Sales Department Manager</option>
+                {% endif %}
 
             </select>
 
