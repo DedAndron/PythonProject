@@ -1,0 +1,43 @@
+
+{% extends 'shop/base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body p-4">
+
+                <h2 class="mb-3">{{ product.name }}</h2>
+
+                <hr>
+
+                <h5>Description</h5>
+
+                <p class="text-muted">
+                    {{ product.description|linebreaks }}
+                </p>
+
+                <h4 class="text-primary mt-4">
+                    Price: ${{ product.price }}
+                </h4>
+
+                <a href="{% url 'home' %}"
+                   class="btn btn-secondary mt-3">
+                    Back to Products
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

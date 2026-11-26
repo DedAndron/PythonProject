@@ -1,0 +1,54 @@
+
+{% extends 'shop/base.html' %}
+
+{% block title %}Buyers{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Buyers</h2>
+
+<div class="table-responsive">
+
+    <table class="table table-striped table-hover bg-white shadow-sm">
+
+        <thead class="table-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for buyer in buyers %}
+
+            <tr>
+                <td>{{ buyer.first_name }}</td>
+                <td>{{ buyer.last_name }}</td>
+
+                <td>
+                    <a href="{% url 'buyer_detail' buyer.pk %}"
+                       class="btn btn-primary btn-sm">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="5" class="text-center">
+                    No buyers found.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

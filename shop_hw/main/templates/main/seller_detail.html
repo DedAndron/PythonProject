@@ -1,0 +1,53 @@
+
+{% extends 'shop/base.html' %}
+
+{% block title %}Seller Details{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <h2 class="mb-4">Seller Information</h2>
+
+        <p>
+            <strong>First Name:</strong>
+            {{ seller.first_name }}
+        </p>
+
+        <p>
+            <strong>Last Name:</strong>
+            {{ seller.last_name }}
+        </p>
+
+        <p>
+            <strong>Phone Number:</strong>
+            {{ seller.phone_number }}
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            {{ seller.email }}
+        </p>
+
+        <p>
+            <strong>Date of Employment:</strong>
+            {{ seller.date_of_employment }}
+        </p>
+
+        <p>
+            <strong>Job Title:</strong>
+            {{ seller.get_job_title_display }}
+        </p>
+
+        <a href="{% url 'seller_list' %}"
+           class="btn btn-secondary mt-3">
+            Back to Sellers
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+
+{% extends 'shop/base.html' %}
+
+{% block title %}Sale Details{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+
+    <div class="card-body p-4">
+
+        <h2 class="mb-4">Sale Information</h2>
+
+        <h5>Buyer</h5>
+
+        <p>
+            {{ sale.buyer.first_name }}
+            {{ sale.buyer.last_name }}
+        </p>
+
+        <h5>Seller</h5>
+
+        <p>
+            {{ sale.seller.first_name }}
+            {{ sale.seller.last_name }}
+        </p>
+
+        <hr>
+
+        <h5>Purchased Products</h5>
+
+        <ul class="list-group mb-4">
+
+            {% for product in sale.product.all %}
+
+            <li class="list-group-item d-flex justify-content-between">
+                <span>{{ product.name }}</span>
+                <strong>${{ product.price }}</strong>
+            </li>
+
+            {% empty %}
+
+            <li class="list-group-item">
+                No products in this sale.
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        <h4 class="text-primary">
+            Total: ${{ sale.sum }}
+        </h4>
+
+        <a href="{% url 'sale_list' %}"
+           class="btn btn-secondary mt-3">
+            Back to Sales
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

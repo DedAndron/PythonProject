@@ -1,0 +1,119 @@
+
+{% extends 'shop/base.html' %}
+
+{% block title %}Sellers{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Sellers</h2>
+
+<!-- Job Title Filter -->
+
+<form method="get" class="card card-body shadow-sm mb-4">
+
+    <div class="row align-items-end">
+
+        <div class="col-md-8">
+
+            <label for="job_title" class="form-label">
+                Filter by Job Title
+            </label>
+
+            <select name="job_title" id="job_title"
+                    class="form-select">
+
+                <option value="">All Positions</option>
+
+                <option value="salesperson"
+                    {% if selected_job == 'salesperson' %}selected{% endif %}>
+                    Salesperson
+                </option>
+
+                <option value="head salesperson"
+                    {% if selected_job == 'head salesperson' %}selected{% endif %}>
+                    Head Salesperson
+                </option>
+
+                <option value="sales department manager"
+                    {% if selected_job == 'sales department manager' %}selected{% endif %}>
+                    Sales Department Manager
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="col-md-4 mt-3 mt-md-0">
+
+            <button type="submit" class="btn btn-primary">
+                Apply Filter
+            </button>
+
+            <a href="{% url 'seller_list' %}"
+               class="btn btn-secondary">
+                Reset
+            </a>
+
+        </div>
+
+    </div>
+
+</form>
+
+<!-- Sellers Table -->
+
+<div class="table-responsive">
+
+    <table class="table table-striped table-hover bg-white shadow-sm">
+
+        <thead class="table-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Job Title</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for seller in sellers %}
+
+            <tr>
+                <td>{{ seller.first_name }}</td>
+                <td>{{ seller.last_name }}</td>
+
+                <td>
+                    {{ seller.get_job_title_display }}
+                </td>
+
+                <td>{{ seller.phone_number }}</td>
+                <td>{{ seller.email }}</td>
+
+                <td>
+                    <a href="{% url 'seller_detail' seller.pk %}"
+                       class="btn btn-primary btn-sm">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="6" class="text-center">
+                    No sellers found.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
